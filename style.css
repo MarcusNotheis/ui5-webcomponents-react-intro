@@ -45,3 +45,7 @@
   transform: scale(2);
   margin-top: 3rem;
 }
+
+.textAlignStart {
+  text-align: start;
+}
