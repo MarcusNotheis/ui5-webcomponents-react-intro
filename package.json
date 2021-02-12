@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/MarcusNotheis/ui5-webcomponents-react-intro.git",
-  "author": "Marcus Notheis <marcus.notheis@sap.com>",
+  "author": "Marcus Notheis <marcus.notheis@sap.com> & Lukas Harbarth <lukas.harbarth@sap.com>",
   "license": "MIT",
   "dependencies": {
     "@ui5/webcomponents": "^1.0.0-rc.11",
