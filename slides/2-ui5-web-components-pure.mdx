@@ -1,0 +1,165 @@
+import "@ui5/webcomponents/dist/Button";
+import "@ui5/webcomponents/dist/Calendar";
+import { EventHandlerManual } from "../components/EventHandlerManual";
+import { BooleanPropsManual } from "../components/BooleanPropsManual";
+
+<!-- section-title: UI5 Web Components and React -->
+# UI5 Web Components and React
+
+<br />
+
+The current version of React (`react@^17.0.0`) has some shortcomings when it comes to using Web Components (a.k.a. `CustomElements`).
+More specifically, React does not handle `boolean` props and is not binding custom events to the components.
+
+---
+<!-- section-title: Working with Boolean Props -->
+## Falsy boolean props are not handled correctly
+
+```javascript
+import "@ui5/webcomponents/dist/Button";
+
+function MyComponent() {
+  return (
+    <>
+      <ui5-button
+        onClick={() => alert("I'll be there onClick!")}
+        disabled={false}
+      >
+        Click me!
+      </ui5-button>
+
+      <ui5-button
+        onClick={() => alert("I will never show up!")}
+        disabled={true}
+      >
+        But you can't click me!
+      </ui5-button>
+    </>
+  );
+}
+```
+
+<br />
+
+results in this component:
+
+<br />
+
+<div className="scaledFlexBox">
+  <ui5-button onClick={() => alert("I'll be there onClick!")} disabled={false}>
+    Click me!
+  </ui5-button>
+  <ui5-button onClick={() => alert("I will never show up!")} disabled={true}>
+    But you can't click me!
+  </ui5-button>
+</div>
+
+---
+
+## How to fix boolean prop binding
+
+```javascript
+import "@ui5/webcomponents/dist/Button";
+
+function MyComponent() {
+  const booleanPropsBtn1 = {};
+  const booleanPropsBtn2 = {};
+
+  const button1ShouldBeDisabled = false;
+  const button2ShouldBeDisabled = true;
+
+  if (button1ShouldBeDisabled === true) {
+    booleanPropsBtn1.disabled = true;
+  }
+  if (button2ShouldBeDisabled === true) {
+    booleanPropsBtn2.disabled = true;
+  }
+
+  return (
+    <>
+      <ui5-button
+        onClick={() => alert("I'll be there onClick!")}
+        {...booleanPropsBtn1}
+      >
+        Click me!
+      </ui5-button>
+
+      <ui5-button
+        onClick={() => alert("I will never show up!")}
+        {...booleanPropsBtn2}
+      >
+        But you can't click me!
+      </ui5-button>
+    </>
+  );
+}
+```
+
+<BooleanPropsManual />
+
+---
+<!-- section-title: Working with Event Handlers -->
+## Event Handlers are not attached
+
+```javascript
+import "@ui5/webcomponents/dist/Calendar";
+
+function MyComponent() {
+  return (
+    <ui5-calendar
+      onSelectedDatesChange={(e) => {
+        e.detail.dates.forEach((d) => alert(new Date(d * 1000)));
+      }}
+    />
+  );
+}
+```
+
+<br />
+<br />
+<br />
+<br />
+<div className="scaledFlexBox">
+    <ui5-calendar id="calenderEventBinding" onSelectedDatesChange={(e) => alert(e.detail.dates)}/>
+</div>
+
+
+---
+
+### How to fix event binding
+
+```javascript
+import "@ui5/webcomponents/dist/Calendar";
+
+function MyComponent() {
+  const ref = useRef();
+
+  useEffect(() => {
+    const currentRef = ref.current;
+    const handler = (e) => {
+      e.detail.dates.forEach((d) => {
+        alert(new Date(d * 1000));
+      });
+    };
+
+    // bind the event handler after the component has mounted
+    if (currentRef) {
+      currentRef.addEventListener("selected-dates-change", handler);
+    }
+
+    // remove the event handler before component unmounts to free up memory
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener("selected-dates-change", handler);
+      }
+    };
+  }, []);
+
+  return <ui5-calendar ref={ref} />;
+}
+```
+<br />
+<br />
+<br />
+<br />
+<EventHandlerManual />

@@ -1,9 +1,9 @@
 <!-- classes: title -->
 
-# Hello😃
+# UI5 Web Components for React
+
+A React Wrapper around UI5 Web Components
 
 ---
 
-<!-- section-title: Bye👋 -->
-
-## Bye👋
+<!-- contents -->

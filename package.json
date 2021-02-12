@@ -6,6 +6,9 @@
   "author": "Marcus Notheis <marcus.notheis@sap.com>",
   "license": "MIT",
   "dependencies": {
+    "@ui5/webcomponents": "^1.0.0-rc.11",
+    "@ui5/webcomponents-fiori": "^1.0.0-rc.11",
+    "@ui5/webcomponents-react": "^0.13.9",
     "fusuma": "^2.4.0"
   },
   "scripts": {
@@ -14,5 +17,8 @@
     "build": "fusuma build",
     "deploy": "npm run build && fusuma deploy",
     "pdf": "npm run build && fusuma pdf"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
