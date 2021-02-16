@@ -1,19 +1,26 @@
 import "@ui5/webcomponents/dist/Button";
 import "@ui5/webcomponents/dist/Calendar";
+import "@ui5/webcomponents/dist/Label";
 import { EventHandlerManual } from "../components/EventHandlerManual";
 import { BooleanPropsManual } from "../components/BooleanPropsManual";
 
-<!-- section-title: UI5 Web Components and React -->
-# UI5 Web Components and React
+<!-- section-title: Using Custom Elements in React -->
+
+# Using Custom Elements in React
+
+The current versions of React (`react 16` and `react 17`) both have some shortcomings in using `CustomElements` in your
+React components:
 
 <br />
+<br />
 
-The current version of React (`react@^17.0.0`) has some shortcomings when it comes to using Web Components (a.k.a. `CustomElements`).
-More specifically, React does not handle `boolean` props and is not binding custom events to the components.
+- incorrect handling of `boolean` attributes
+- custom event handlers are not attached
+- inconsistencies with regular React props
 
 ---
-<!-- section-title: Working with Boolean Props -->
-## Falsy boolean props are not handled correctly
+
+## Incorrect handling of `boolean` attributes
 
 ```javascript
 import "@ui5/webcomponents/dist/Button";
@@ -56,7 +63,7 @@ results in this component:
 
 ---
 
-## How to fix boolean prop binding
+## How to fix it
 
 ```javascript
 import "@ui5/webcomponents/dist/Button";
@@ -98,8 +105,8 @@ function MyComponent() {
 <BooleanPropsManual />
 
 ---
-<!-- section-title: Working with Event Handlers -->
-## Event Handlers are not attached
+
+## Custom event handlers are not attached
 
 ```javascript
 import "@ui5/webcomponents/dist/Calendar";
@@ -120,13 +127,15 @@ function MyComponent() {
 <br />
 <br />
 <div className="scaledFlexBox">
-    <ui5-calendar id="calenderEventBinding" onSelectedDatesChange={(e) => alert(e.detail.dates)}/>
+  <ui5-calendar
+    id="calenderEventBinding"
+    onSelectedDatesChange={(e) => alert(e.detail.dates)}
+  />
 </div>
-
 
 ---
 
-### How to fix event binding
+### How to fix it
 
 ```javascript
 import "@ui5/webcomponents/dist/Calendar";
@@ -158,8 +167,75 @@ function MyComponent() {
   return <ui5-calendar ref={ref} />;
 }
 ```
+
 <br />
 <br />
 <br />
 <br />
 <EventHandlerManual />
+
+---
+
+## Inconsistencies with standard React Props
+
+Let's pretend that we have this CSS definition available on our website:
+
+```html
+<style>
+  .textColorRed {
+    color: red;
+  }
+</style>
+```
+
+You can add it to any HTML Element by using the `className` prop:
+
+```jsx
+function MyComponent() {
+  return <span className="textColorRed">Click Me!</span>;
+}
+```
+
+<label className="textColorRed">I'm a text!</label>
+
+---
+
+### Using `className` on Custom Elements
+
+With Custom Elements this standard prop doesn't work:
+
+```jsx
+function MyComponent() {
+  return <ui5-label className="textColorRed">I'm a text!</ui5-label>;
+}
+```
+
+<div className="scaledFlexBox">
+  <ui5-label className="textColorRed">I'm a text!</ui5-label>
+</div>
+<br />
+<br />
+
+You have use the plain HTML `class` prop for achieving the same behaviour for Custom Elements:
+
+```jsx
+function MyComponent() {
+  return <ui5-label class="textColorRed">I'm a text!</ui5-label>;
+}
+```
+
+<div className="scaledFlexBox">
+  <ui5-label {...{ class: "textColorRed" }}>I'm a text!</ui5-label>
+</div>
+
+---
+
+<!-- classes: improveIt -->
+
+<!-- block-start: attribution -->
+[Source](http://gph.is/1eUMdaf)
+<!-- block-end -->
+
+# There must be a better way...
+
+
