@@ -18,4 +18,4 @@ slide:
       - jsx
     plugins:
       - line-numbers
-    theme: okaida
+    theme: okaidia
