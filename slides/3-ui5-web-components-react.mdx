@@ -1,16 +1,20 @@
-import {Button, Calendar, Label } from "@ui5/webcomponents-react";
+import { Button, Calendar, Label } from "@ui5/webcomponents-react";
 
 <!-- section-title: UI5 Web Components for React -->
 
 ![](../assets/UI5WCR_Logo.png)
 
----
+<br />
+<br />
+<br />
 
-# What does UI5 Web Components for React offer?
+<!-- fragments-start -->
 
 - provides Wrapper Components for all UI5 Web Components
 - provides complex layouts (e.g. `ObjectPage`) and charts built on top of UI5 Web Components
 - Type Definitions for all components
+
+<!-- fragments-end -->
 
 ---
 
@@ -18,10 +22,6 @@ import {Button, Calendar, Label } from "@ui5/webcomponents-react";
 
 Our Wrapper components are hiding the complexity of dealing with Custom Elements in React and let you use the UI5 Web Components
 in React as if they were "regular" React Components.
-
-<!-- fragments-start -->
-
-<!-- fragments-end -->
 
 ---
 
@@ -47,17 +47,18 @@ function MyComponent() {
 ```
 
 <div className="scaledFlexBox">
-    <Button onClick={() => alert("I'll be there onClick!")} disabled={false}>
-        Click me!
-    </Button>
-    <Button onClick={() => alert("I will never show up!")} disabled={true}>
-        But you can't click me!
-    </Button>
+  <Button onClick={() => alert("I'll be there onClick!")} disabled={false}>
+    Click me!
+  </Button>
+  <Button onClick={() => alert("I will never show up!")} disabled={true}>
+    But you can't click me!
+  </Button>
 </div>
 
 <!-- end-block -->
 
 ---
+
 <!-- start-block -->
 
 ## Event Handlers
@@ -75,16 +76,17 @@ function MyComponent() {
   );
 }
 ```
-<br/>
-<br/>
-<br/>
-<br/>
+
+<br />
+<br />
+<br />
+<br />
 <div className="scaledFlexBox">
-    <Calendar
-        onSelectedDatesChange={(e) => {
-            e.detail.dates.forEach((d) => alert(new Date(d * 1000)));
-        }}
-    />
+  <Calendar
+    onSelectedDatesChange={(e) => {
+      e.detail.dates.forEach((d) => alert(new Date(d * 1000)));
+    }}
+  />
 </div>
 
 <!-- end-block -->
@@ -94,16 +96,17 @@ function MyComponent() {
 ## Support for standard HTML props
 
 ```jsx
-import { Label } from '@ui5/webcomponents-react';
+import { Label } from "@ui5/webcomponents-react";
 
 function MyComponent() {
   return <Label className="textColorRed">I'm a text!</Label>;
 }
 ```
 
-<div className="scaledFlexBox">
-    <Label className="textColorRed">I'm a text!</Label>
-</div>
+<br />
+<Label className="textColorRed" style={{ fontSize: "24px" }}>
+  I'm a text!
+</Label>
 
 <br />
 <br />
@@ -119,11 +122,11 @@ attributes.
 
 <!-- block-start: grid -->
 <!-- block-start: column -->
+
 ![](../assets/DynamicPage.png)
+
 <!-- block-end -->
 <!-- block-end -->
-
-
 
 ---
 
@@ -131,11 +134,15 @@ attributes.
 
 <!-- block-start: grid -->
 <!-- block-start: column -->
+
 ![](../assets/ButtonPropTypes.png)
+
 <!-- block-end -->
 
 <!-- block-start: column -->
+
 ![](../assets/ButtonTypeAhead.png)
+
 <!-- block-end -->
 <!-- block-end -->
 
@@ -144,10 +151,17 @@ attributes.
 <!-- classes: demo -->
 
 <!-- block-start: attribution -->
+
+<!--
+
 [Source](http://gph.is/1LmxrD8)
+
+-->
+
 <!-- block-end -->
 
 <!-- section-title: Demo -->
+
 # Demo
 
 ---
@@ -158,6 +172,7 @@ attributes.
 
 - [Github Repository](https://github.com/SAP/ui5-webcomponents-react)
 - [Documentation](https://sap.github.io/ui5-webcomponents-react)
+- [Tutorial](https://developers.sap.com/mission.react-spa.html)
 
 <br />
 <br />
@@ -167,31 +182,34 @@ attributes.
 
 <!-- block-start: grid -->
 <!-- block-start: column -->
+
 ###### Marcus Notheis
 
 marcus.notheis@sap.com
 
 <!-- block-start: social -->
+
 [![Github](../assets/GitHub-Mark-Light-32px.png)](https://github.com/MarcusNotheis)
 
 [![Twitter](../assets/Twitter.png)](https://twitter.com/marcusnotheis)
+
 <!-- block-end -->
 
 <!-- block-end -->
 
 <!-- block-start: column -->
+
 ###### Lukas Harbarth
 
 lukas.harbarth@sap.com
 
 <!-- block-start: social -->
+
 [![Github](../assets/GitHub-Mark-Light-32px.png)](https://github.com/Lukas742)
 
 [![Twitter](../assets/Twitter.png)](https://twitter.com/luk742)
-<!-- block-end -->
 
 <!-- block-end -->
+
 <!-- block-end -->
-
-
-
+<!-- block-end -->

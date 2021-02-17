@@ -22,7 +22,7 @@ React components:
 
 ## Incorrect handling of `boolean` attributes
 
-```javascript
+```jsx
 import "@ui5/webcomponents/dist/Button";
 
 function MyComponent() {
@@ -46,12 +46,12 @@ function MyComponent() {
 }
 ```
 
+<!-- fragments-start -->
+
+<!-- block-start -->
+
 <br />
-
-results in this component:
-
 <br />
-
 <div className="scaledFlexBox">
   <ui5-button onClick={() => alert("I'll be there onClick!")} disabled={false}>
     Click me!
@@ -61,11 +61,15 @@ results in this component:
   </ui5-button>
 </div>
 
+<!-- block-end -->
+
+<!-- fragments-end -->
+
 ---
 
 ## How to fix it
 
-```javascript
+```jsx
 import "@ui5/webcomponents/dist/Button";
 
 function MyComponent() {
@@ -108,7 +112,7 @@ function MyComponent() {
 
 ## Custom event handlers are not attached
 
-```javascript
+```jsx
 import "@ui5/webcomponents/dist/Calendar";
 
 function MyComponent() {
@@ -122,6 +126,10 @@ function MyComponent() {
 }
 ```
 
+<!-- fragments-start -->
+
+<!-- block-start -->
+
 <br />
 <br />
 <br />
@@ -133,11 +141,15 @@ function MyComponent() {
   />
 </div>
 
+<!-- block-end -->
+
+<!-- fragments-end -->
+
 ---
 
-### How to fix it
+## How to fix it
 
-```javascript
+```jsx
 import "@ui5/webcomponents/dist/Calendar";
 
 function MyComponent() {
@@ -188,6 +200,10 @@ Let's pretend that we have this CSS definition available on our website:
 </style>
 ```
 
+<br />
+<br />
+<br />
+
 You can add it to any HTML Element by using the `className` prop:
 
 ```jsx
@@ -196,46 +212,60 @@ function MyComponent() {
 }
 ```
 
-<label className="textColorRed">I'm a text!</label>
+<br />
+<span className="textColorRed">I'm a text!</span>
 
 ---
 
-### Using `className` on Custom Elements
-
-With Custom Elements this standard prop doesn't work:
+## Using `className` on Custom Elements doesn't work
 
 ```jsx
+import "@ui5/webcomponents/dist/Label";
+
 function MyComponent() {
   return <ui5-label className="textColorRed">I'm a text!</ui5-label>;
 }
 ```
 
-<div className="scaledFlexBox">
-  <ui5-label className="textColorRed">I'm a text!</ui5-label>
-</div>
 <br />
-<br />
+
+<!-- fragments-start -->
+
+<!-- block-start -->
+
+<ui5-label className="textColorRed" style={{fontSize: '24px'}}>I'm a text!</ui5-label>
+
+<!-- block-end -->
+
+<!-- fragments-end -->
+
+---
+
+## How to fix it
 
 You have use the plain HTML `class` prop for achieving the same behaviour for Custom Elements:
 
 ```jsx
+import "@ui5/webcomponents/dist/Label";
+
 function MyComponent() {
   return <ui5-label class="textColorRed">I'm a text!</ui5-label>;
 }
 ```
 
-<div className="scaledFlexBox">
-  <ui5-label {...{ class: "textColorRed" }}>I'm a text!</ui5-label>
-</div>
+<br />
+<ui5-label style={{ fontSize: "24px" }} {...{ class: "textColorRed" }}>
+  I'm a text!
+</ui5-label>
 
 ---
 
 <!-- classes: improveIt -->
 
 <!-- block-start: attribution -->
+
 [Source](http://gph.is/1eUMdaf)
+
 <!-- block-end -->
 
 # There must be a better way...
-
-

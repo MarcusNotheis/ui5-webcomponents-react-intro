@@ -1,15 +1,15 @@
 meta:
-  url:
-  title:
-  description:
-  siteName:
+  url: https://marcusnotheis.github.io/ui5-webcomponents-react-intro/
+  title: UI5 Web Components for React Introduction
+  description: A brief overview of using UI5 Web Components in React and how to improve developer experience using UI5 Web Components for React.
+  siteName: UI5 Web Components for React
   sns: ["twitter"]
 slide:
   loop: false
   ui:
     sidebar: true
     vertical: false
-    pagination: # bullets | progressbar | fraction
+    pagination: progressbar # bullets | progressbar | fraction
     effect: # fade | cube | flip
   code:
     languages:
@@ -18,4 +18,4 @@ slide:
       - jsx
     plugins:
       - line-numbers
-    theme: tomorrow
+    theme: okaida

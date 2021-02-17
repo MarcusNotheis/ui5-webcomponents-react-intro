@@ -75,9 +75,9 @@
 }
 
 .demo {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://media.giphy.com/media/sDcfxFDozb3bO/giphy.gif");
-  background-size: cover;
+  /*background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),*/
+  /*  url("https://media.giphy.com/media/sDcfxFDozb3bO/giphy.gif");*/
+  /*background-size: cover;*/
 }
 
 .attribution {
@@ -90,4 +90,8 @@
 
 h1 {
   margin-bottom: 4rem;
+}
+
+h2 {
+  margin-bottom: 3rem;
 }
