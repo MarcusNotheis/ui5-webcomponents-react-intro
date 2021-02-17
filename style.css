@@ -95,3 +95,11 @@ h1 {
 h2 {
   margin-bottom: 3rem;
 }
+
+.extendedMaxWidth {
+  --base-max-width: 1800px;
+}
+
+.fadedOut {
+  opacity: 0.65;
+}

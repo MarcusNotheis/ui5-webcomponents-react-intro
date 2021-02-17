@@ -25,20 +25,75 @@ in React as if they were "regular" React Components.
 
 ---
 
-<!-- begin-block -->
+<!-- classes: extendedMaxWidth -->
 
 ## Boolean Prop Handling
+
+<!-- block-start: grid -->
+
+<!-- block-start: column,fadedOut -->
+
+###### with plain UI5 Web Components
+
+```jsx
+import "@ui5/webcomponents/dist/Button";
+
+function MyComponent() {
+  const booleanPropsBtn1 = {};
+  const booleanPropsBtn2 = {};
+
+  const button1ShouldBeDisabled = false;
+  const button2ShouldBeDisabled = true;
+
+  if (button1ShouldBeDisabled === true) {
+    booleanPropsBtn1.disabled = true;
+  }
+  if (button2ShouldBeDisabled === true) {
+    booleanPropsBtn2.disabled = true;
+  }
+
+  return (
+    <>
+      <ui5-button
+        onClick={() => alert("I'll be there onClick!")}
+        {...booleanPropsBtn1}
+      >
+        Click me!
+      </ui5-button>
+
+      <ui5-button
+        onClick={() => alert("I will never show up!")}
+        {...booleanPropsBtn2}
+      >
+        But you can't click me!
+      </ui5-button>
+    </>
+  );
+}
+```
+
+<!-- block-end -->
+<!-- block-start: column -->
+
+###### with UI5 Web Components for React
 
 ```jsx
 import { Button } from "@ui5/webcomponents-react";
 
 function MyComponent() {
+
   return (
     <>
-      <Button onClick={() => alert("I'll be there onClick!")} disabled={false}>
+      <Button
+          onClick={() => alert("I'll be there onClick!")}
+          disabled={false}
+      >
         Click me!
       </Button>
-      <Button onClick={() => alert("I will never show up!")} disabled={true}>
+      <Button
+          onClick={() => alert("I will never show up!")}
+          disabled={true}
+      >
         But you can't click me!
       </Button>
     </>
@@ -46,24 +101,73 @@ function MyComponent() {
 }
 ```
 
+<!-- block-end -->
+<!-- block-end -->
+
 <div className="scaledFlexBox">
-  <Button onClick={() => alert("I'll be there onClick!")} disabled={false}>
+  <Button
+      onClick={() => alert("I'll be there onClick!")}
+      disabled={false}
+  >
     Click me!
   </Button>
-  <Button onClick={() => alert("I will never show up!")} disabled={true}>
+  <Button
+      onClick={() => alert("I will never show up!")}
+      disabled={true}
+  >
     But you can't click me!
   </Button>
 </div>
 
-<!-- end-block -->
-
 ---
 
-<!-- start-block -->
+<!-- classes: extendedMaxWidth -->
 
 ## Event Handlers
 
-```javascript
+<!-- block-start: grid -->
+
+<!-- block-start: column,fadedOut -->
+
+###### with plain UI5 Web Components
+
+```jsx
+import "@ui5/webcomponents/dist/Calendar";
+
+function MyComponent() {
+  const ref = useRef();
+
+  useEffect(() => {
+    const currentRef = ref.current;
+    const handler = (e) => {
+      e.detail.dates.forEach((d) => {
+        alert(new Date(d * 1000));
+      });
+    };
+
+    // bind the event handler after the component has mounted
+    if (currentRef) {
+      currentRef.addEventListener("selected-dates-change", handler);
+    }
+
+    // remove the event handler before component unmounts to free up memory
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener("selected-dates-change", handler);
+      }
+    };
+  }, []);
+
+  return <ui5-calendar ref={ref} />;
+}
+```
+
+<!-- block-end -->
+<!-- block-start:column -->
+
+###### with UI5 Web Components for React
+
+```jsx
 import { Calendar } from "@ui5/webcomponents-react";
 
 function MyComponent() {
@@ -81,6 +185,7 @@ function MyComponent() {
 <br />
 <br />
 <br />
+
 <div className="scaledFlexBox">
   <Calendar
     onSelectedDatesChange={(e) => {
@@ -89,11 +194,32 @@ function MyComponent() {
   />
 </div>
 
-<!-- end-block -->
+<!-- block-end -->
+<!-- block-end -->
 
 ---
 
+<!-- classes: extendedMaxWidth -->
+
 ## Support for standard HTML props
+
+<!-- block-start: grid -->
+<!-- block-start: column,fadedOut -->
+
+###### with plain UI5 Web Components
+
+```jsx
+import "@ui5/webcomponents/dist/Label";
+
+function MyComponent() {
+  return <ui5-label class="textColorRed">I'm a text!</ui5-label>;
+}
+```
+
+<!-- block-end -->
+<!-- block-start: column -->
+
+###### with UI5 Web Components for React
 
 ```jsx
 import { Label } from "@ui5/webcomponents-react";
@@ -102,6 +228,11 @@ function MyComponent() {
   return <Label className="textColorRed">I'm a text!</Label>;
 }
 ```
+
+<!-- block-end -->
+<!-- block-end -->
+
+
 
 <br />
 <Label className="textColorRed" style={{ fontSize: "24px" }}>
